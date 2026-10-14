@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "helpdesk-mcp"
+version = "0.1.0"
+description = "A helpdesk exposed over the Model Context Protocol, plus an AI agent that triages tickets through it."
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Talha S." }]
+requires-python = ">=3.11"
+dependencies = [
+    "mcp>=2.2,<3",
+    "pydantic>=2.7",
+]
+keywords = ["mcp", "model-context-protocol", "ai-agents", "llm", "anthropic", "helpdesk"]
+
+[project.optional-dependencies]
+anthropic = ["anthropic>=0.60"]
+
+[project.scripts]
+helpdesk-mcp = "helpdesk_mcp.__main__:main"
+helpdesk-agent = "helpdesk_mcp.agent.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "anyio>=4",
+    "ruff>=0.6",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/helpdesk_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 130
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "B"]
+ignore = ["E501"]
