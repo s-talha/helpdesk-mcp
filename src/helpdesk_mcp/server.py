@@ -30,9 +30,9 @@ Internal notes (add_comment with internal=true) are for agents only; customer-fa
 Closed tickets are final. Never promise refunds or credits the knowledge base doesn't support.
 """
 
-READ = ToolAnnotations(readOnlyHint=True, openWorldHint=False)
-WRITE = ToolAnnotations(readOnlyHint=False, destructiveHint=False, openWorldHint=False)
-WRITE_IDEMPOTENT = ToolAnnotations(readOnlyHint=False, destructiveHint=False, idempotentHint=True, openWorldHint=False)
+READ = ToolAnnotations(read_only_hint=True, open_world_hint=False)
+WRITE = ToolAnnotations(read_only_hint=False, destructive_hint=False, open_world_hint=False)
+WRITE_IDEMPOTENT = ToolAnnotations(read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=False)
 
 TicketId = Annotated[int, Field(ge=1, description="Ticket id, for example 3.")]
 Query = Annotated[str, Field(max_length=200, description="Words to search for. Leave empty to match everything.")]
